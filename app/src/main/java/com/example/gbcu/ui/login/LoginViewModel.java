@@ -1,12 +1,9 @@
 package com.example.gbcu.ui.login;
 
-import android.text.Editable;
 import android.text.TextUtils;
-import android.widget.EditText;
 
 import com.example.gbcu.data.DataManager;
 import com.example.gbcu.ui.base.BaseViewModel;
-import com.example.gbcu.util.CommonUtil;
 import com.example.gbcu.util.SchedulerProvider;
 
 public class LoginViewModel extends BaseViewModel<LoginNavigator> {
@@ -39,5 +36,12 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> {
 
     public void onTextChange(CharSequence text) {
         getNavigator().onTextChange(text);
+    }
+
+    public void checkRememberUser(String userName) {
+        String savedPassword = getDataManager().getRememberUser(userName);
+        if (!TextUtils.isEmpty(savedPassword)) {
+            getNavigator().setPasswordFromRemember(savedPassword);
+        }
     }
 }

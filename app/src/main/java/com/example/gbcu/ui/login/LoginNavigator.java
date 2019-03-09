@@ -6,4 +6,6 @@ public interface LoginNavigator {
     void onLoginSuccess();
 
     void onLoginFail();
+
+    void setPasswordFromRemember(String savedPassword);
 }

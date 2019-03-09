@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,15 +56,22 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
     @Override
     public void onTextChange(CharSequence text) {
         TextView loginBtn = mActivityLoginBinding.btnLogin;
+        Switch switchBtn = mActivityLoginBinding.switchRemember;
         String userName = mActivityLoginBinding.etUserName.getText().toString();
         String password = mActivityLoginBinding.etPassword.getText().toString();
 
         if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(password)) {
             loginBtn.setEnabled(false);
+            switchBtn.setEnabled(false);
             loginBtn.setBackground(ContextCompat.getDrawable(this, R.drawable.round_corner_button_bg_disable));
         } else {
             loginBtn.setEnabled(true);
+            switchBtn.setEnabled(true);
             loginBtn.setBackground(ContextCompat.getDrawable(this, R.drawable.round_corner_button_bg_active));
+        }
+
+        if (text.toString().equals(userName)) {
+            mLoginViewModel.checkRememberUser(userName);
         }
     }
 
@@ -76,5 +84,13 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
     public void onLoginFail() {
         mActivityLoginBinding.etPassword.requestFocus();
         Toast.makeText(this, "Signon information is not recognized", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void setPasswordFromRemember(String savedPassword) {
+        mActivityLoginBinding.etPassword.setText(savedPassword);
+        if (!mActivityLoginBinding.switchRemember.isChecked()) {
+            mActivityLoginBinding.switchRemember.setChecked(true);
+        }
     }
 }

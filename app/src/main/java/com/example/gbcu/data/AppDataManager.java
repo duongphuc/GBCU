@@ -49,4 +49,9 @@ public class AppDataManager implements DataManager {
     public void removeRememberUser(String userName) {
         preferenceHelper.removeSavedUser(userName);
     }
+
+    @Override
+    public String getRememberUser(String userName) {
+        return preferenceHelper.getSavedUser(userName);
+    }
 }

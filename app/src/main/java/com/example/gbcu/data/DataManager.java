@@ -12,4 +12,6 @@ public interface DataManager {
     void rememberUser(String userName, String password);
 
     void removeRememberUser(String userName);
+
+    String getRememberUser(String userName);
 }
