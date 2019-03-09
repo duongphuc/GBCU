@@ -84,6 +84,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/switchRemember"
                     android:paddingRight="16dp"
+                    android:onCheckedChanged="@{(buttonView, isSelected) -> viewModel.onRememberClick(isSelected, etUserName.getText().toString(), etPassword.getText().toString())}"
                     android:theme="@style/SwitchStyle"/>
                 <TextView
                     android:layout_width="wrap_content"

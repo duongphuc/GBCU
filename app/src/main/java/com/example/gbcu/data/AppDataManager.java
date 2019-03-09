@@ -1,5 +1,8 @@
 package com.example.gbcu.data;
 
+import android.text.TextUtils;
+
+import com.example.gbcu.data.local.PreferenceHelper;
 import com.example.gbcu.data.model.LoginResponse;
 import com.example.gbcu.util.AppConstant;
 
@@ -10,8 +13,10 @@ import io.reactivex.SingleEmitter;
 import io.reactivex.SingleOnSubscribe;
 
 public class AppDataManager implements DataManager {
+    private PreferenceHelper preferenceHelper;
     @Inject
-    public AppDataManager() {
+    public AppDataManager(PreferenceHelper preferencesHelper) {
+        this.preferenceHelper = preferencesHelper;
     }
 
     @Override
@@ -19,13 +24,29 @@ public class AppDataManager implements DataManager {
         return Single.create(new SingleOnSubscribe<LoginResponse>() {
             @Override
             public void subscribe(SingleEmitter<LoginResponse> emitter) throws Exception {
-                if (userName.equals(AppConstant.AUTH_USER_NAME) && password.equals(AppConstant.AUTH_PASS_WORD)) {
+                if (userName.equals(preferenceHelper.getAuthUserName()) && password.equals(preferenceHelper.getAuthPassword())) {
                     LoginResponse loginResponse = new LoginResponse(AppConstant.DUMMY_ACCESS_TOKEN);
+                    preferenceHelper.saveToken(loginResponse.getAccesToken());
                     emitter.onSuccess(loginResponse);
                     return;
                 }
                 throw new Exception("Login fail");
             }
         });
+    }
+
+    @Override
+    public void updateAuthToken(String token) {
+        preferenceHelper.saveToken(token);
+    }
+
+    @Override
+    public void rememberUser(String userName, String password) {
+        preferenceHelper.saveUser(userName, password);
+    }
+
+    @Override
+    public void removeRememberUser(String userName) {
+        preferenceHelper.removeSavedUser(userName);
     }
 }

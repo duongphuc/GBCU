@@ -74,6 +74,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
 
     @Override
     public void onLoginFail() {
+        mActivityLoginBinding.etPassword.requestFocus();
         Toast.makeText(this, "Signon information is not recognized", Toast.LENGTH_LONG).show();
     }
 }

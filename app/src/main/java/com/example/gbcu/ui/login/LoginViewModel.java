@@ -29,6 +29,14 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> {
                 }));
     }
 
+    public void onRememberClick(boolean isSelected, String userName, String password) {
+        if (isSelected) {
+            getDataManager().rememberUser(userName, password);
+        } else  {
+            getDataManager().removeRememberUser(userName);
+        }
+    }
+
     public void onTextChange(CharSequence text) {
         getNavigator().onTextChange(text);
     }
