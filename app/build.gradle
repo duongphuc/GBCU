@@ -65,4 +65,9 @@ dependencies {
 
     //font
     implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
+
+    // view model
+    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleVersion"
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$rootProject.lifecycleVersion"
+    implementation 'androidx.viewpager:viewpager:1.0.0'
 }

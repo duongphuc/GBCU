@@ -16,6 +16,7 @@ buildscript {
         materialVersion = '1.0.0'
         vectorDrawableVersion = '1.0.1'
         animatedVectorDrawableVersion = '1.0.0'
+        lifecycleVersion = '2.0.0'
     }
     repositories {
         google()

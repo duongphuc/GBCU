@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dots_height">30dp</dimen>
+    <dimen name="company_logo_height">56dp</dimen>
+    <dimen name="company_logo_width">192dp</dimen>
+</resources>

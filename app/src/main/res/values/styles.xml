@@ -58,4 +58,10 @@
         <item name="android:textAppearance">@style/TextAppearance.Text.Regular</item>
     </style>
 
+    <style name="WalkthroughStyle">
+        <item name="android:layout_margin">16dp</item>
+        <item name="android:maxLines">10</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
 </resources>

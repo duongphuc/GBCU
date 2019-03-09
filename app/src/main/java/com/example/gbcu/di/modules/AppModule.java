@@ -5,6 +5,8 @@ import android.content.Context;
 
 import com.example.gbcu.data.AppDataManager;
 import com.example.gbcu.data.DataManager;
+import com.example.gbcu.util.AppSchedulerProvider;
+import com.example.gbcu.util.SchedulerProvider;
 
 import javax.inject.Singleton;
 
@@ -23,5 +25,10 @@ public class AppModule {
     @Singleton
     DataManager provideDataManager(AppDataManager appDataManager) {
         return appDataManager;
+    }
+
+    @Provides
+    SchedulerProvider provideSchedulerProvider() {
+        return new AppSchedulerProvider();
     }
 }
