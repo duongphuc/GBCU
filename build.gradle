@@ -6,10 +6,16 @@ buildscript {
         rxjava2Version = '2.2.4'
         rxandroidVersion = '2.1.0'
         gsonVersion = '2.8.0'
-        supportLibraryVersion = '28.0.0'
         glideVersion = '4.4.0'
         butterKnifeVersion = '10.1.0'
         timberVersion = '4.7.1'
+        constraintLayoutVersion = '1.1.3'
+        recyclerViewVersion = '1.0.0'
+        cardViewVersion = '1.0.0'
+        supportLibraryVersion = '1.0.2'
+        materialVersion = '1.0.0'
+        vectorDrawableVersion = '1.0.1'
+        animatedVectorDrawableVersion = '1.0.0'
     }
     repositories {
         google()
