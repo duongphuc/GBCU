@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 
 public class GbcuApp extends Application implements HasActivityInjector {
@@ -28,5 +29,11 @@ public class GbcuApp extends Application implements HasActivityInjector {
                 .application(this)
                 .build()
                 .inject(this);
+
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/SourceSansPro-Regular.ttf")
+                .setFontAttrId(R.attr.fontPath)
+                .build()
+        );
     }
 }

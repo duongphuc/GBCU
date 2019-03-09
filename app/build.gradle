@@ -62,4 +62,7 @@ dependencies {
 
     // logger
     implementation "com.jakewharton.timber:timber:$rootProject.timberVersion"
+
+    //font
+    implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
 }
