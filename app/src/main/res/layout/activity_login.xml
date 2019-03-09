@@ -5,6 +5,7 @@
     tools:context="com.mindorks.framework.mvvm.ui.login.LoginActivity">
 
     <data>
+        <import type="android.view.View"/>
         <variable
             name="viewModel"
             type="com.example.gbcu.ui.login.LoginViewModel" />
@@ -15,7 +16,7 @@
         android:layout_height="match_parent">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <include
                 android:id="@+id/include"
@@ -42,7 +43,8 @@
                     android:id="@+id/etUserName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/userName" />
+                    android:hint="@string/userName"
+                    android:onTextChanged="@{(text, start, before, count) -> viewModel.onTextChange(text)}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -54,13 +56,16 @@
                 android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:passwordToggleEnabled="true"
                 app:layout_constraintTop_toBottomOf="@+id/layoutUserName">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/password" />
+                    android:inputType="textPassword"
+                    android:hint="@string/password"
+                    android:onTextChanged="@{(text, start, before, count) -> viewModel.onTextChange(text)}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
@@ -93,7 +98,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
-                android:background="@drawable/round_corner_button_bg"
+                android:background="@drawable/round_corner_button_bg_disable"
                 android:text="@string/login"
                 android:paddingLeft="64dp"
                 android:paddingRight="64dp"
@@ -102,7 +107,19 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 style="@style/TextStyle.Button"
+                android:onClick="@{() -> viewModel.onLoginClick(etUserName.getText().toString(), etPassword.getText().toString())}"
                 app:layout_constraintTop_toBottomOf="@+id/layoutRemember" />
+
+            <androidx.core.widget.ContentLoadingProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
