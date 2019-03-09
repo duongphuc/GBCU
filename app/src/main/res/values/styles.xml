@@ -58,10 +58,30 @@
         <item name="android:textAppearance">@style/TextAppearance.Text.Regular</item>
     </style>
 
+    <style name="TextStyle.Button" parent="TextStyle">
+        <item name="android:textAppearance">@style/TextAppearance.Text.Regular</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
     <style name="WalkthroughStyle">
         <item name="android:layout_margin">16dp</item>
         <item name="android:maxLines">10</item>
         <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="SwitchStyle" parent="Theme.AppCompat.Light">
+        <!-- active thumb & track color (30% transparency) -->
+        <item name="colorControlActivated">@color/light_green</item>
+
+        <!-- inactive thumb color -->
+        <item name="colorSwitchThumbNormal">@color/gray
+        </item>
+
+        <!-- inactive track color (30% transparency) -->
+        <item name="android:colorForeground">@color/dark_gray
+        </item>
     </style>
 
 </resources>
