@@ -13,6 +13,7 @@ import com.example.gbcu.R;
 import com.example.gbcu.ViewModelProviderFactory;
 import com.example.gbcu.databinding.ActivityLoginBinding;
 import com.example.gbcu.ui.base.BaseActivity;
+import com.example.gbcu.ui.list.NewsListActivity;
 
 import javax.inject.Inject;
 
@@ -70,14 +71,16 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
             loginBtn.setBackground(ContextCompat.getDrawable(this, R.drawable.round_corner_button_bg_active));
         }
 
-        if (text.toString().equals(userName)) {
+        if (text.toString().equals(userName) && TextUtils.isEmpty(password)) {
             mLoginViewModel.checkRememberUser(userName);
         }
     }
 
     @Override
     public void onLoginSuccess() {
-        Toast.makeText(this, "Login Successfully", Toast.LENGTH_LONG).show();
+        Intent intent = NewsListActivity.newIntent(this);
+        startActivity(intent);
+        finish();
     }
 
     @Override
@@ -88,9 +91,13 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
 
     @Override
     public void setPasswordFromRemember(String savedPassword) {
-        mActivityLoginBinding.etPassword.setText(savedPassword);
-        if (!mActivityLoginBinding.switchRemember.isChecked()) {
-            mActivityLoginBinding.switchRemember.setChecked(true);
+        if (!TextUtils.isEmpty(savedPassword)) {
+            mActivityLoginBinding.etPassword.setText(savedPassword);
+            if (!mActivityLoginBinding.switchRemember.isChecked()) {
+                mActivityLoginBinding.switchRemember.setChecked(true);
+            }
+        } else {
+            mActivityLoginBinding.switchRemember.setChecked(false);
         }
     }
 }

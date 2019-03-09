@@ -40,8 +40,6 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> {
 
     public void checkRememberUser(String userName) {
         String savedPassword = getDataManager().getRememberUser(userName);
-        if (!TextUtils.isEmpty(savedPassword)) {
-            getNavigator().setPasswordFromRemember(savedPassword);
-        }
+        getNavigator().setPasswordFromRemember(savedPassword);
     }
 }
