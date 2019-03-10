@@ -8,4 +8,6 @@ public interface NewsListNavigator {
     void fetchNewsSuccess(List<NewsSchema> items);
 
     void fetchNewsFail();
+
+    void onRefresh();
 }

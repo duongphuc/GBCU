@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/round_corner_item_background"
-        android:layout_margin="4dp">
+        android:layout_margin="8dp">
 
         <ImageView
             android:id="@+id/imageView"

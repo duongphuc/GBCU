@@ -30,7 +30,6 @@ public class NewsListViewModel extends BaseViewModel<NewsListNavigator> {
                         NewsSchema news = new NewsSchema(item.getTitle(), item.getPubDate(), item.getImgUrl().getUrl(), item.getDescription());
                         newsSchemaList.add(news);
                     }
-
                     return newsSchemaList;
                 })
                 .subscribe(response -> {
@@ -40,5 +39,11 @@ public class NewsListViewModel extends BaseViewModel<NewsListNavigator> {
                     setIsLoading(false);
                     getNavigator().fetchNewsFail();
                 }));
+    }
+
+    public void onRefresh() {
+        setIsLoading(true);
+        getNavigator().onRefresh();
+        fetchNews();
     }
 }

@@ -34,7 +34,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/include">
+            app:layout_constraintTop_toBottomOf="@+id/include"
+            app:refreshing="@{viewModel.isLoading}"
+            app:onRefreshListener="@{() -> viewModel.onRefresh()}">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewList"
@@ -58,16 +60,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
-        <androidx.core.widget.ContentLoadingProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

@@ -3,6 +3,7 @@ package com.example.gbcu.ui.list;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.gbcu.BR;
 import com.example.gbcu.R;
@@ -25,6 +26,7 @@ public class NewsListActivity extends BaseActivity<ActivityNewsListBinding, News
     ViewModelProviderFactory factory;
     private NewsListViewModel mNewsListViewModel;
     private ActivityNewsListBinding mActivityNewsListBinding;
+    private NewsListAdapter adapter;
 
     public static Intent newIntent(Context context) {
         return new Intent(context, NewsListActivity.class);
@@ -61,12 +63,23 @@ public class NewsListActivity extends BaseActivity<ActivityNewsListBinding, News
     @Override
     public void fetchNewsSuccess(List<NewsSchema> items) {
         RecyclerView recyclerView = mActivityNewsListBinding.recyclerViewList;
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL,false));
-        recyclerView.setAdapter(new NewsListAdapter(items));
+        recyclerView.setVisibility(View.VISIBLE);
+        if (adapter == null) {
+            recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL,false));
+            recyclerView.setAdapter(new NewsListAdapter(items));
+        } else {
+            adapter.clear();
+            adapter.addAll(items);
+        }
     }
 
     @Override
     public void fetchNewsFail() {
 
+    }
+
+    @Override
+    public void onRefresh() {
+        mActivityNewsListBinding.recyclerViewList.setVisibility(View.GONE);
     }
 }

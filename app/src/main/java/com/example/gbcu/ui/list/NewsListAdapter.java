@@ -19,6 +19,16 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.ViewHo
         this.listNews = listNews;
     }
 
+    public void clear() {
+        listNews.clear();
+        notifyDataSetChanged();
+    }
+
+    public void addAll(List<NewsSchema> list) {
+        listNews.addAll(list);
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
