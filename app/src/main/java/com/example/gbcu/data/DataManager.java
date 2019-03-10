@@ -10,6 +10,8 @@ public interface DataManager {
 
     void updateAuthToken(String token);
 
+    void saveUserInfo(LoginResponse.UserInfo userInfo);
+
     void rememberUser(String userName, String password);
 
     void removeRememberUser(String userName);

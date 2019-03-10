@@ -29,9 +29,7 @@ public class AppDataManager implements DataManager {
             @Override
             public void subscribe(SingleEmitter<LoginResponse> emitter) throws Exception {
                 if (userName.equals(preferenceHelper.getAuthUserName()) && password.equals(preferenceHelper.getAuthPassword())) {
-                    LoginResponse loginResponse = new LoginResponse();
-                    preferenceHelper.saveToken(loginResponse.getAccesToken());
-                    preferenceHelper.saveUserInfo(loginResponse.getUserInfo());
+                    LoginResponse loginResponse = new LoginResponse(SecureTokenGenerator.nextToken());
                     emitter.onSuccess(loginResponse);
                     return;
                 }
@@ -43,6 +41,11 @@ public class AppDataManager implements DataManager {
     @Override
     public void updateAuthToken(String token) {
         preferenceHelper.saveToken(token);
+    }
+
+    @Override
+    public void saveUserInfo(LoginResponse.UserInfo userInfo) {
+        preferenceHelper.saveUserInfo(userInfo);
     }
 
     @Override

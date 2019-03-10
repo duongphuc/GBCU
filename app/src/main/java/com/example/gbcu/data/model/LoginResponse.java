@@ -7,8 +7,8 @@ public class LoginResponse {
 
     private UserInfo userInfo;
 
-    public LoginResponse() {
-        this.accessToken = SecureTokenGenerator.nextToken();
+    public LoginResponse(String accessToken) {
+        this.accessToken = accessToken;
         this.userInfo = new UserInfo();
     }
 

@@ -19,6 +19,8 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> {
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(response -> {
                     getNavigator().onLoginSuccess();
+                    getDataManager().updateAuthToken(response.getAccesToken());
+                    getDataManager().saveUserInfo(response.getUserInfo());
                     setIsLoading(false);
                 }, throwable -> {
                     getNavigator().onLoginFail();
