@@ -1,6 +1,7 @@
 package com.example.gbcu.data;
 
 import com.example.gbcu.data.model.LoginResponse;
+import com.example.gbcu.data.model.NewsResponse;
 
 import io.reactivex.Single;
 
@@ -14,4 +15,6 @@ public interface DataManager {
     void removeRememberUser(String userName);
 
     String getRememberUser(String userName);
+
+    Single<NewsResponse> fetchListNews();
 }

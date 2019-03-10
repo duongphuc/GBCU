@@ -7,6 +7,8 @@ import com.example.gbcu.data.AppDataManager;
 import com.example.gbcu.data.DataManager;
 import com.example.gbcu.data.local.AppPreferenceHelper;
 import com.example.gbcu.data.local.PreferenceHelper;
+import com.example.gbcu.data.remote.ApiHelper;
+import com.example.gbcu.data.remote.AppApiHelper;
 import com.example.gbcu.di.PreferenceInfo;
 import com.example.gbcu.util.AppConstant;
 import com.example.gbcu.util.AppSchedulerProvider;
@@ -47,6 +49,11 @@ public class AppModule {
     @Singleton
     PreferenceHelper providePreferencesHelper(AppPreferenceHelper appPreferencesHelper) {
         return appPreferencesHelper;
+    }
+
+    @Provides
+    ApiHelper provideApiHelper(AppApiHelper appApiHelper) {
+        return appApiHelper;
     }
 
 }

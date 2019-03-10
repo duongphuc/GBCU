@@ -20,7 +20,7 @@
             layout="@layout/layout_gb_img"
             android:layout_width="@dimen/company_logo_width"
             android:layout_height="@dimen/company_logo_height"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="48dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -28,16 +28,18 @@
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/include">
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
-            </androidx.recyclerview.widget.RecyclerView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <TextView
@@ -46,8 +48,8 @@
             android:background="@drawable/round_corner_button_bg_active"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingBottom="8dp"
@@ -55,6 +57,17 @@
             android:text="@string/logout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

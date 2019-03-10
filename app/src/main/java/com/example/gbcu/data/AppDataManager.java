@@ -1,9 +1,9 @@
 package com.example.gbcu.data;
 
-import android.text.TextUtils;
-
 import com.example.gbcu.data.local.PreferenceHelper;
 import com.example.gbcu.data.model.LoginResponse;
+import com.example.gbcu.data.model.NewsResponse;
+import com.example.gbcu.data.remote.ApiHelper;
 import com.example.gbcu.util.AppConstant;
 
 import javax.inject.Inject;
@@ -14,9 +14,12 @@ import io.reactivex.SingleOnSubscribe;
 
 public class AppDataManager implements DataManager {
     private PreferenceHelper preferenceHelper;
+    private ApiHelper apiHelper;
+
     @Inject
-    public AppDataManager(PreferenceHelper preferencesHelper) {
+    public AppDataManager(PreferenceHelper preferencesHelper, ApiHelper apiHelper) {
         this.preferenceHelper = preferencesHelper;
+        this.apiHelper = apiHelper;
     }
 
     @Override
@@ -53,5 +56,10 @@ public class AppDataManager implements DataManager {
     @Override
     public String getRememberUser(String userName) {
         return preferenceHelper.getSavedUser(userName);
+    }
+
+    @Override
+    public Single<NewsResponse> fetchListNews() {
+        return apiHelper.fetchListNews();
     }
 }

@@ -5,6 +5,7 @@ import android.app.Application;
 import com.example.gbcu.GbcuApp;
 import com.example.gbcu.di.modules.ActivityBuilderModule;
 import com.example.gbcu.di.modules.AppModule;
+import com.example.gbcu.di.modules.RetrofitModule;
 
 import javax.inject.Singleton;
 
@@ -14,7 +15,7 @@ import dagger.android.AndroidInjection;
 import dagger.android.AndroidInjectionModule;
 
 @Singleton
-@Component(modules = {AndroidInjectionModule.class, AppModule.class, ActivityBuilderModule.class})
+@Component(modules = {AndroidInjectionModule.class, AppModule.class, ActivityBuilderModule.class, RetrofitModule.class})
 public interface AppComponent {
     @Component.Builder
     interface Builder {
