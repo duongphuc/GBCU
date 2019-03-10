@@ -19,7 +19,7 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> {
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(response -> {
                     getNavigator().onLoginSuccess();
-                    getDataManager().updateAuthToken(response.getAccesToken());
+                    getDataManager().updateAuthToken(response.getAccesToken(), response.getExpireTime());
                     getDataManager().saveUserInfo(response.getUserInfo());
                     setIsLoading(false);
                 }, throwable -> {
@@ -43,5 +43,13 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> {
     public void checkRememberUser(String userName) {
         String savedPassword = getDataManager().getRememberUser(userName);
         getNavigator().setPasswordFromRemember(savedPassword);
+    }
+
+    public void checkToken() {
+        if (getDataManager().isUserLogin()) {
+            getNavigator().onLoginSuccess();
+            return;
+        }
+        getDataManager().removeLoginTokenIfAvailable();
     }
 }

@@ -52,6 +52,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
         super.onCreate(savedInstanceState);
         mActivityLoginBinding = getViewDataBinding();
         mLoginViewModel.setNavigator(this);
+        mLoginViewModel.checkToken();
     }
 
     @Override

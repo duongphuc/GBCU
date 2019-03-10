@@ -3,7 +3,7 @@ package com.example.gbcu.data.local;
 import com.example.gbcu.data.model.LoginResponse;
 
 public interface PreferenceHelper {
-    void saveToken(String token);
+    void saveToken(String token, long expireTime);
 
     void saveUser(String userName, String password);
 
@@ -20,4 +20,8 @@ public interface PreferenceHelper {
     void saveUserInfo(LoginResponse.UserInfo userInfo);
 
     void removeUserInfo();
+
+    long getExpiredTokenTime();
+
+    String getToken();
 }

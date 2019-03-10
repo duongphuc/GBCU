@@ -12,6 +12,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
+import java.util.Date;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -34,6 +35,7 @@ public class LoginViewModelTest {
     public static final String USERNAME = "username";
     public static final String PASSWORD = "password";
     public static final String TOKEN = "token";
+    public static final long EXPIREDTIME = 15215151;
 
     LoginNavigator mLoginCallback;
     DataManager dataManagerMock;
@@ -74,7 +76,7 @@ public class LoginViewModelTest {
         success();
         SUT.onLoginClick(USERNAME, PASSWORD);
         mTestScheduler.triggerActions();
-        verify(dataManagerMock).updateAuthToken(TOKEN);
+        verify(dataManagerMock).updateAuthToken(TOKEN, EXPIREDTIME);
     }
 
     @Test
@@ -109,9 +111,9 @@ public class LoginViewModelTest {
         SUT.checkRememberUser(USERNAME);
         verify(mLoginCallback).setPasswordFromRemember(PASSWORD);
     }
-    
+
     private void success() {
-        LoginResponse loginResponse = new LoginResponse(TOKEN);
+        LoginResponse loginResponse = new LoginResponse(TOKEN, EXPIREDTIME);
         doReturn(Single.just(loginResponse))
                 .when(dataManagerMock)
                 .doOnLogin(USERNAME, PASSWORD);

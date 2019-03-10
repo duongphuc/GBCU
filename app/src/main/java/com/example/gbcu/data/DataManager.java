@@ -8,7 +8,7 @@ import io.reactivex.Single;
 public interface DataManager {
     Single<LoginResponse> doOnLogin(String userName, String password);
 
-    void updateAuthToken(String token);
+    void updateAuthToken(String token, long expireTime);
 
     void saveUserInfo(LoginResponse.UserInfo userInfo);
 
@@ -21,4 +21,8 @@ public interface DataManager {
     Single<NewsResponse> fetchListNews();
 
     void logout();
+
+    boolean isUserLogin();
+
+    void removeLoginTokenIfAvailable();
 }

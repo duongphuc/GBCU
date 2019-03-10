@@ -1,5 +1,7 @@
 package com.example.gbcu.data.local;
 
+import android.text.TextUtils;
+
 import com.example.gbcu.data.model.LoginResponse;
 import com.example.gbcu.util.AppConstant;
 import com.example.gbcu.util.SecurePreferences;
@@ -20,11 +22,10 @@ public class AppPreferenceHelper implements PreferenceHelper {
     }
 
     @Override
-    public void saveToken(String token) {
+    public void saveToken(String token, long expireTime) {
         mPrefs.put("token", token);
+        mPrefs.put("expireTokenTime", String.valueOf(expireTime));
     }
-
-
 
     @Override
     public void saveUser(String userName, String password) {
@@ -54,6 +55,7 @@ public class AppPreferenceHelper implements PreferenceHelper {
     @Override
     public void removeToken() {
         mPrefs.removeValue("token");
+        mPrefs.removeValue("expireTokenTime");
     }
 
     @Override
@@ -65,5 +67,18 @@ public class AppPreferenceHelper implements PreferenceHelper {
     @Override
     public void removeUserInfo() {
         mPrefs.removeValue("userInfo");
+    }
+
+    @Override
+    public long getExpiredTokenTime() {
+        if (!TextUtils.isEmpty(mPrefs.getString("expireTokenTime"))) {
+            return Long.parseLong(mPrefs.getString("expireTokenTime"));
+        }
+        return 0;
+    }
+
+    @Override
+    public String getToken() {
+        return mPrefs.getString("token");
     }
 }

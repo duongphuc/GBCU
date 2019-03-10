@@ -1,5 +1,7 @@
 package com.example.gbcu.data;
 
+import android.text.TextUtils;
+
 import com.example.gbcu.data.local.PreferenceHelper;
 import com.example.gbcu.data.model.LoginResponse;
 import com.example.gbcu.data.model.NewsResponse;
@@ -29,7 +31,7 @@ public class AppDataManager implements DataManager {
             @Override
             public void subscribe(SingleEmitter<LoginResponse> emitter) throws Exception {
                 if (userName.equals(preferenceHelper.getAuthUserName()) && password.equals(preferenceHelper.getAuthPassword())) {
-                    LoginResponse loginResponse = new LoginResponse(SecureTokenGenerator.nextToken());
+                    LoginResponse loginResponse = new LoginResponse(SecureTokenGenerator.nextToken(), System.currentTimeMillis()+(60*3*1000));
                     emitter.onSuccess(loginResponse);
                     return;
                 }
@@ -39,8 +41,8 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public void updateAuthToken(String token) {
-        preferenceHelper.saveToken(token);
+    public void updateAuthToken(String token, long expireTime) {
+        preferenceHelper.saveToken(token, expireTime);
     }
 
     @Override
@@ -73,5 +75,18 @@ public class AppDataManager implements DataManager {
         apiHelper.doLogout();
         preferenceHelper.removeToken();
         preferenceHelper.removeUserInfo();
+    }
+
+    @Override
+    public boolean isUserLogin() {
+        return preferenceHelper.getExpiredTokenTime() > System.currentTimeMillis();
+    }
+
+    @Override
+    public void removeLoginTokenIfAvailable() {
+        if (preferenceHelper.getExpiredTokenTime() > 0) {
+            preferenceHelper.removeToken();
+            preferenceHelper.removeUserInfo();
+        }
     }
 }
