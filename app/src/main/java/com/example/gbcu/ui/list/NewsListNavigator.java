@@ -12,4 +12,6 @@ public interface NewsListNavigator {
     void onRefresh();
 
     void logout();
+
+    void loadDetail(String link, String title);
 }

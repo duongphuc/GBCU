@@ -1,5 +1,6 @@
 package com.example.gbcu.di.modules;
 
+import com.example.gbcu.ui.detail.NewsDetailActivity;
 import com.example.gbcu.ui.list.NewsListActivity;
 import com.example.gbcu.ui.login.LoginActivity;
 import com.example.gbcu.ui.walkthrough.WalkThroughActivity;
@@ -17,4 +18,7 @@ public abstract class ActivityBuilderModule {
 
     @ContributesAndroidInjector
     abstract NewsListActivity bindNewsListActivity();
+
+    @ContributesAndroidInjector
+    abstract NewsDetailActivity bindNewsDetailActivity();
 }

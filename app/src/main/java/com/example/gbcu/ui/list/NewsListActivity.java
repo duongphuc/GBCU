@@ -11,6 +11,7 @@ import com.example.gbcu.ViewModelProviderFactory;
 import com.example.gbcu.data.model.NewsSchema;
 import com.example.gbcu.databinding.ActivityNewsListBinding;
 import com.example.gbcu.ui.base.BaseActivity;
+import com.example.gbcu.ui.detail.NewsDetailActivity;
 import com.example.gbcu.ui.login.LoginActivity;
 
 import java.util.List;
@@ -57,17 +58,13 @@ public class NewsListActivity extends BaseActivity<ActivityNewsListBinding, News
         mNewsListViewModel.fetchNews();
     }
 
-    private void setupRecyclerView() {
-
-    }
-
     @Override
     public void fetchNewsSuccess(List<NewsSchema> items) {
         RecyclerView recyclerView = mActivityNewsListBinding.recyclerViewList;
         recyclerView.setVisibility(View.VISIBLE);
         if (adapter == null) {
             recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL,false));
-            recyclerView.setAdapter(new NewsListAdapter(items));
+            recyclerView.setAdapter(adapter = new NewsListAdapter(items, mNewsListViewModel));
         } else {
             adapter.clear();
             adapter.addAll(items);
@@ -89,5 +86,10 @@ public class NewsListActivity extends BaseActivity<ActivityNewsListBinding, News
         finishAffinity();
         Intent intent = LoginActivity.newIntent(this);
         startActivity(intent);
+    }
+
+    @Override
+    public void loadDetail(String link, String title) {
+        startActivity(NewsDetailActivity.newIntent(this, link, title));
     }
 }

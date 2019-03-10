@@ -22,7 +22,7 @@ public class NewsItemViewModel {
     private NewsSchema news;
     private NewsItemViewModelListener listener;
     public interface NewsItemViewModelListener {
-        void onItemClick();
+        void onItemClick(String link, String title);
     }
 
     public NewsItemViewModel(NewsSchema news, NewsItemViewModelListener listener) {
@@ -42,5 +42,9 @@ public class NewsItemViewModel {
                 .load(imageUrl)
                 .apply(requestOptions)
                 .into(view);
+    }
+
+    public void onItemClick() {
+        listener.onItemClick(news.getLink(), news.getTitle());
     }
 }

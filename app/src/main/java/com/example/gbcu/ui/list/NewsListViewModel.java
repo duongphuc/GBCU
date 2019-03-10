@@ -27,7 +27,7 @@ public class NewsListViewModel extends BaseViewModel<NewsListNavigator> {
                     List<NewsSchema> newsSchemaList = new ArrayList<>();
                     List<NewsResponse.Item> itemList = newsResponse.channel.getItems();
                     for (NewsResponse.Item item : itemList) {
-                        NewsSchema news = new NewsSchema(item.getTitle(), item.getPubDate(), item.getImgUrl().getUrl(), item.getDescription());
+                        NewsSchema news = new NewsSchema(item.getTitle(), item.getPubDate(), item.getImgUrl().getUrl(), item.getDescription(), item.getLink());
                         newsSchemaList.add(news);
                     }
                     return newsSchemaList;
@@ -50,5 +50,9 @@ public class NewsListViewModel extends BaseViewModel<NewsListNavigator> {
     public void logoutClick() {
         getDataManager().logout();
         getNavigator().logout();
+    }
+
+    public void onNewsClick(String link, String title) {
+        getNavigator().loadDetail(link, title);
     }
 }

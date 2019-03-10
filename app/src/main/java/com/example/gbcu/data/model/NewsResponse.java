@@ -21,8 +21,14 @@ public class NewsResponse {
         private String description;
         @Element(name = "pubDate")
         private String pubDate;
+        @Element(name = "link")
+        private String link;
         @Element(name = "thumbnail", required = false)
         private Media imgUrl;
+
+        public String getLink() {
+            return link;
+        }
 
         @Root(name = "thumbnail", strict = false)
         public static class Media {

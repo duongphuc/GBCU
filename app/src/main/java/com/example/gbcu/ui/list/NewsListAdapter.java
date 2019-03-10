@@ -15,8 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.ViewHolder> {
     private List<NewsSchema> listNews;
-    public NewsListAdapter(List<NewsSchema> listNews) {
+    private NewsListViewModel newsListViewModel;
+
+    public NewsListAdapter(List<NewsSchema> listNews, NewsListViewModel newsListViewModel) {
         this.listNews = listNews;
+        this.newsListViewModel = newsListViewModel;
     }
 
     public void clear() {
@@ -64,8 +67,8 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.ViewHo
         }
 
         @Override
-        public void onItemClick() {
-
+        public void onItemClick(String link, String title) {
+            newsListViewModel.onNewsClick(link, title);
         }
     }
 }
