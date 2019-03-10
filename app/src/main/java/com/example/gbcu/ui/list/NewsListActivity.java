@@ -11,6 +11,7 @@ import com.example.gbcu.ViewModelProviderFactory;
 import com.example.gbcu.data.model.NewsSchema;
 import com.example.gbcu.databinding.ActivityNewsListBinding;
 import com.example.gbcu.ui.base.BaseActivity;
+import com.example.gbcu.ui.login.LoginActivity;
 
 import java.util.List;
 
@@ -75,11 +76,18 @@ public class NewsListActivity extends BaseActivity<ActivityNewsListBinding, News
 
     @Override
     public void fetchNewsFail() {
-
+        //Handle error in case fetch news fail
     }
 
     @Override
     public void onRefresh() {
         mActivityNewsListBinding.recyclerViewList.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void logout() {
+        finishAffinity();
+        Intent intent = LoginActivity.newIntent(this);
+        startActivity(intent);
     }
 }

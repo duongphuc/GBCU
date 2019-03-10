@@ -14,6 +14,7 @@ import com.example.gbcu.util.AppConstant;
 import com.example.gbcu.util.AppSchedulerProvider;
 import com.example.gbcu.util.SchedulerProvider;
 import com.example.gbcu.util.SecurePreferences;
+import com.google.gson.Gson;
 
 import javax.inject.Singleton;
 
@@ -55,5 +56,4 @@ public class AppModule {
     ApiHelper provideApiHelper(AppApiHelper appApiHelper) {
         return appApiHelper;
     }
-
 }

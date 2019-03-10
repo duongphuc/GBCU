@@ -46,4 +46,9 @@ public class NewsListViewModel extends BaseViewModel<NewsListNavigator> {
         getNavigator().onRefresh();
         fetchNews();
     }
+
+    public void logoutClick() {
+        getDataManager().logout();
+        getNavigator().logout();
+    }
 }

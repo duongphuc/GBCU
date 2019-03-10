@@ -9,4 +9,6 @@ import io.reactivex.Single;
 
 public interface ApiHelper {
     Single<NewsResponse> fetchListNews();
+
+    void doLogout();
 }

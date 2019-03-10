@@ -10,4 +10,6 @@ public interface NewsListNavigator {
     void fetchNewsFail();
 
     void onRefresh();
+
+    void logout();
 }

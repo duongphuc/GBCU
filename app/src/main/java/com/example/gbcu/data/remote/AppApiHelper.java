@@ -22,4 +22,9 @@ public class AppApiHelper implements ApiHelper {
     public Single<NewsResponse> fetchListNews() {
         return apiService.fetchNews();
     }
+
+    @Override
+    public void doLogout() {
+        //Use for call to server inform invalid token in case logout
+    }
 }

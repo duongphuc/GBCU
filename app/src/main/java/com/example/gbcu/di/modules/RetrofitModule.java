@@ -55,4 +55,9 @@ public class RetrofitModule {
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         return httpLoggingInterceptor;
     }
+
+    @Provides
+    Gson provideGson() {
+        return new Gson();
+    }
 }

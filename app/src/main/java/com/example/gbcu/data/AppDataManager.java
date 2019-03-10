@@ -5,6 +5,7 @@ import com.example.gbcu.data.model.LoginResponse;
 import com.example.gbcu.data.model.NewsResponse;
 import com.example.gbcu.data.remote.ApiHelper;
 import com.example.gbcu.util.AppConstant;
+import com.example.gbcu.util.SecureTokenGenerator;
 
 import javax.inject.Inject;
 
@@ -28,8 +29,9 @@ public class AppDataManager implements DataManager {
             @Override
             public void subscribe(SingleEmitter<LoginResponse> emitter) throws Exception {
                 if (userName.equals(preferenceHelper.getAuthUserName()) && password.equals(preferenceHelper.getAuthPassword())) {
-                    LoginResponse loginResponse = new LoginResponse(AppConstant.DUMMY_ACCESS_TOKEN);
+                    LoginResponse loginResponse = new LoginResponse();
                     preferenceHelper.saveToken(loginResponse.getAccesToken());
+                    preferenceHelper.saveUserInfo(loginResponse.getUserInfo());
                     emitter.onSuccess(loginResponse);
                     return;
                 }
@@ -61,5 +63,12 @@ public class AppDataManager implements DataManager {
     @Override
     public Single<NewsResponse> fetchListNews() {
         return apiHelper.fetchListNews();
+    }
+
+    @Override
+    public void logout() {
+        apiHelper.doLogout();
+        preferenceHelper.removeToken();
+        preferenceHelper.removeUserInfo();
     }
 }
