@@ -1,14 +1,8 @@
-<LinearLayout
+<ImageView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingTop="48dp"
-    android:paddingBottom="48dp">
-    <include layout="@layout/layout_gb_img"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/walkthrough_slide_2_content"
-        style="@style/WalkthroughStyle"/>
-</LinearLayout>
+    android:src="@drawable/img_go_bear_2"
+    android:adjustViewBounds="true"
+    android:scaleType="fitCenter"
+    />
