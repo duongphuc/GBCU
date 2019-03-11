@@ -31,7 +31,7 @@ public class GbcuApp extends Application implements HasActivityInjector {
                 .inject(this);
 
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/SourceSansPro-Regular.ttf")
+                .setDefaultFontPath("fonts/source-sans-pro/SourceSansPro-Regular.ttf")
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         );
