@@ -23,21 +23,9 @@ public class NewsResponse {
         private String pubDate;
         @Element(name = "link")
         private String link;
-        @Element(name = "thumbnail", required = false)
-        private Media imgUrl;
 
         public String getLink() {
             return link;
-        }
-
-        @Root(name = "thumbnail", strict = false)
-        public static class Media {
-            @Attribute(name = "url")
-            private String url;
-
-            public String getUrl() {
-                return url;
-            }
         }
 
         public String getTitle() {
@@ -52,8 +40,8 @@ public class NewsResponse {
             return pubDate;
         }
 
-        public Media getImgUrl() {
-            return imgUrl;
+        public String getImgUrl() {
+            return "https://news.bbcimg.co.uk/nol/shared/img/bbc_news_120x60.gif";
         }
     }
 

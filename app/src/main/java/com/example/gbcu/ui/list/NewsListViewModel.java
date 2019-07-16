@@ -27,7 +27,7 @@ public class NewsListViewModel extends BaseViewModel<NewsListNavigator> {
                     List<NewsSchema> newsSchemaList = new ArrayList<>();
                     List<NewsResponse.Item> itemList = newsResponse.channel.getItems();
                     for (NewsResponse.Item item : itemList) {
-                        NewsSchema news = new NewsSchema(item.getTitle(), item.getPubDate(), item.getImgUrl().getUrl(), item.getDescription(), item.getLink());
+                        NewsSchema news = new NewsSchema(item.getTitle(), item.getPubDate(), item.getImgUrl(), item.getDescription(), item.getLink());
                         newsSchemaList.add(news);
                     }
                     return newsSchemaList;
